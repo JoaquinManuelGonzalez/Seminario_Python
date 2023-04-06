@@ -23,6 +23,7 @@ print(nombres)
 aprobado.clear()
 print(aprobado)
 print("Juancho" in nombres)
+lista.index(1)
 
 
 """
@@ -62,7 +63,4 @@ Modificacion de los elementos de una Lista:
 
         Funcion "print(elemento in variable)": mediante esa sentencia el Print nos devolvera en pantalla True si el elemento esta
                                                en la Lista o False en caso contrario
-        
-        
-
 """

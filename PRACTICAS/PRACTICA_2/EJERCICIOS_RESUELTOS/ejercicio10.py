@@ -12,45 +12,51 @@ grades_2 = [30, 95, 28, 84, 84, 43, 66, 51, 4, 11, 58, 10, 13, 34, 96, 71, 86, 3
            64, 13, 8, 87, 14, 14, 49, 27, 55, 69, 77, 59, 57, 40, 96, 24, 30, 73,
            95, 19, 47, 15, 31, 39, 15, 74, 33, 57, 10]
 
-def creation():
-    """This function creates and returns a dictionary called "students" whit the information of the students names 
-    and the group of grades of each one."""
-    students = dict()
+def creation(name, grades_1, grades_2):
+    """This function receives a string of names and two lists of marks andcreates 
+    and returns a dictionary called "students" whit the information of the students 
+    names and the group of grades of each one."""
+
     grades_group = zip(names.split(","), grades_1, grades_2)
-    for elem in grades_group:
-        students[elem[0]] = elem[1:]
+    students = {name: (mark1, mark2) for name, mark1, mark2 in grades_group}
     return students
 
 def average_student(students):
-    """This function receives the dictionary before created, makes and returns a new one called "average_per_student" 
-    with the name of each student and the average of their grades."""
+    """This function receives the dictionary before created, makes and returns 
+    a new one called "average_per_student" with the name of each student and the 
+    average of their grades."""
+
     average_per_student = dict()
     for elem in students:
-        average_per_student[elem] = (sum(students[elem]) / len(students[elem]))
+        average_per_student[elem] = sum(students[elem]) / len(students[elem]) if (len(students[elem]) > 0) else 0
     return average_per_student
 
 def average_class(average_per_student):
-    """This function receives the average of each student, calculates and return the general average of the class."""
+    """This function receives the average of each student, calculates and return 
+    the general average of the class."""
 
-    return (sum(average_per_student.values()) / len(average_per_student))
+    return sum(average_per_student.values()) / len(average_per_student) if (len(average_per_student) > 0) else 0
 
 def max_student(average_per_student):
-    """This function receives the average notes of each student and returns the name of the student with the highest average."""
+    """This function receives the average notes of each student and returns the 
+    name of the student with the highest average."""
 
-    return max(average_per_student, key= average_per_student.get)
+    return max(average_per_student.items(), key=lambda student: student[1])[0]
 
 def min_student(students):
-    """This function receives the group of marks of each student and returns the name of the student with the lowest grade."""
+    """This function receives the group of marks of each student and returns the 
+    name of the student with the lowest grade."""
 
-    return min(students, key= students.get)
+    return min(average_per_student.items(), key=lambda student: student[1])[0]
 
 names = names.replace("\n", "")
-students = creation()
+students = creation(names, grades_1, grades_2)
 average_per_student = average_student(students)
+print(average_per_student)
 class_average = average_class(average_per_student)
 max_average = max_student(average_per_student)
 min_mark = min_student(students)
-print(f'The class average is: {class_average}')
+print(f'The class average is: {round(class_average, 2)}')
 print(f"The studient with the highest average is: {max_average} with average: {average_per_student.get(max_average)}")
 print(f"The studient with the lowest grade is: {min_mark} with the mark: {min(students.get(min_mark))}")
 
