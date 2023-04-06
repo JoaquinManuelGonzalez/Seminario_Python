@@ -52,7 +52,6 @@ def min_student(students):
 names = names.replace("\n", "")
 students = creation(names, grades_1, grades_2)
 average_per_student = average_student(students)
-print(average_per_student)
 class_average = average_class(average_per_student)
 max_average = max_student(average_per_student)
 min_mark = min_student(students)
