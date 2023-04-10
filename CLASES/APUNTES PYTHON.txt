@@ -1,0 +1,65 @@
+Si se definen varias funciones con un mismo nombre, python toma la ultima como la que se va a utilizar.
+
+para el doc string se debe utilizar triple comilla """ para explicar que hace la funcion.
+
+si quiero imitar un f string en una funcion, el primer parametro debe de ser una cadena de caracteres, y los siguientes serian los elementos a insertar en la cadena de string.
+
+si mando un diccionario como parametro a una funcion en la invocacion, el nombre de los parametros debe de coincidir con los nombres de las Key del diccionario.
+
+para indicar una modificacion a una variable global debo de modificarla invocandola con la siguiente forma:
+global variable.
+
+las funciones que utilizan parametros por defecto, evaluan su valor una unica vez la primera vez que se define la funcion.
+
+help(nombre_de_una_funcion): devuelve el doc string de la misma.
+
+en un sort podemos usar el parametro Key para ordenar una lista de una forma en especifico sin modificar el contenido de la lista.
+
+funcion "map(funcion,coleccion)": aplica la funcion especificada a cada elemento de la coleccion.
+
+funcion "filter(funcion,coleccion)": aplica la funcion especificada que devuelve True/False a cada elemento de la coleccion, pude devolver todos los elementos como algunos de ellos.
+
+function "reduce(funcion,coleccion)": aplica la funcion especificada a cada elemento de la coleccion consecutivamente retornando un unico valor y no una coleccion como en las anteriores.
+
+funcion "variable.strip()": elimina los espacios (adelante y atras de un string) a la hora de comparar un string.
+
+para pasar parametros desde la linea de comandos de python se debe importar el modulo sys y utilizar sys.argv para poder pasarlos en esa lista de caracteres
+
+sys.argv[0] nos dice el nombre del programa que se esta ejecutando
+
+funcion "open(nombre, modo)" crea el objeto archivo y lo guarda en memoria secundaria. TIPOS DE MODO: r = solo lectura; w = escritura, si existe el archivo, pisa la informacion; a = append de informacion; x = crea un archivo, si el archivo esta creado salta un error.
+
+opcionalmente al modo se le puede poner un "+" o un "b" + = significa que es de lectura y escritura, y con b = archivo binario. Si no se especifica, se entiende que es un archivo de TEXTO.
+
+open('arch', 'w') puede dar error si nosotros queremos abrir un archivo en el cual no tenemos permiso de escritura o si el almacenamiento esta lleno.
+
+si no pasamos un modo en el open, python asume que es 'r', es decir, de lectura.
+
+open(arch) da error si el archivo no existe o si no tenemos permiso para visualizar el archivo.
+
+"""
+import os
+
+ruta = os.path.dirname(os.path.realpath("."))
+
+ruta_completa = os.path.join(ruta, "teorias", "ejemplos", "clase")
+
+dirname = nombre de la ruta;
+.realpath = nombre de la ruta en las que estas parado;
+
+Esto se utiliza para poder hacer una importacion de archivos sin importar el sistema operativo que tengan las maquinas.
+"""
+
+variable.write(contenido) = escribe contenido en caracteres en un archivo
+
+print(variable.write(variable)) = nos dice la cantidad de caracteres que se escriben
+
+variable.close() = cierra el archivo y guarda el contenido
+
+variable.read(cantidad_bytes) = lee esa cantidad de bytes en el archivo, si la cantidad de bytes es (< 0) y si pasamos el read sin parametros lee hasta el fin de archivo
+
+si el read retorna "" es que estoy en el EOF
+
+
+
+
