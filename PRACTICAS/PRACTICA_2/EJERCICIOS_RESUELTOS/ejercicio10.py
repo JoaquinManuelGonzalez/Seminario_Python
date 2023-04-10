@@ -12,12 +12,16 @@ grades_2 = [30, 95, 28, 84, 84, 43, 66, 51, 4, 11, 58, 10, 13, 34, 96, 71, 86, 3
            64, 13, 8, 87, 14, 14, 49, 27, 55, 69, 77, 59, 57, 40, 96, 24, 30, 73,
            95, 19, 47, 15, 31, 39, 15, 74, 33, 57, 10]
 
+"""A. Generar una estructura con todas las notas relacionando el nombre del estudiante con las
+notas. Utilizar esta estructura para la resolución de los siguientes items."""
+
 def creation(name, grades_1, grades_2):
-    """This function receives a string of names and two lists of marks andcreates 
-    and returns a dictionary called "students" whit the information of the students 
+    """This function receives a string of names and two lists of marks and creates 
+    and returns a dictionary called "students" with the information of the students 
     names and the group of grades of each one."""
 
-    grades_group = zip(names.split(","), grades_1, grades_2)
+    filtred_names = names.replace(" ", "").replace("'", "").replace("\n", "").split(",")
+    grades_group = zip(filtred_names, grades_1, grades_2)
     students = {name: (mark1, mark2) for name, mark1, mark2 in grades_group}
     return students
 
@@ -49,7 +53,6 @@ def min_student(students):
 
     return min(average_per_student.items(), key=lambda student: student[1])[0]
 
-names = names.replace("\n", "")
 students = creation(names, grades_1, grades_2)
 average_per_student = average_student(students)
 class_average = average_class(average_per_student)
