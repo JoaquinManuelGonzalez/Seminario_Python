@@ -27,15 +27,19 @@ para pasar parametros desde la linea de comandos de python se debe importar el m
 
 sys.argv[0] nos dice el nombre del programa que se esta ejecutando
 
-funcion "open(nombre, modo)" crea el objeto archivo y lo guarda en memoria secundaria. TIPOS DE MODO: r = solo lectura; w = escritura, si existe el archivo, pisa la informacion; a = append de informacion; x = crea un archivo, si el archivo esta creado salta un error.
+funcion "open(nombre, modo)" crea el objeto archivo y lo guarda en memoria secundaria. TIPOS DE MODO: r = solo lectura en modo texto; w = escritura (si existe el archivo, pisa la informacion); a = append de informacion; x = crea un archivo, si el archivo esta creado salta un error.
 
-opcionalmente al modo se le puede poner un "+" o un "b" + = significa que es de lectura y escritura, y con b = archivo binario. Si no se especifica, se entiende que es un archivo de TEXTO.
+Hay mas parametros que se le puede pasar a la funcion open, estos son: open("nombre_del_archivo", "modo", encoding, errors, newline, closefd, opener). Encoding: solo para modo texto, por defecto la codificacion que se utiliza es la predeterminada por el sistema operativo, en mi caso (UTF-8). Errors: cadena opcional que especifica cómo se deben manejar los errores de codificacion y decodificacion ('strict': genera ValueError exception; 'ignore': ignora los errores, eso puede llevar a la perdida de datos; 'replace': pone un marcador de reemplazo como por ejm. '?' si hay un error; etc...). Newline: determina como analizar los caracteres de salto de linea. Closefd y Opener: PREGUNTAR. 
+
+opcionalmente al modo se le puede poner un "+" o un "b" o un "t"; + = significa que es de lectura y escritura, con b = archivo binario. Si no se especifica, se entiende que es un archivo de TEXTO, con "t" = abrimos en modo TEXTO, este modo es el DEFAULT, el contenido del archivo se devuelve con str.
 
 open('arch', 'w') puede dar error si nosotros queremos abrir un archivo en el cual no tenemos permiso de escritura o si el almacenamiento esta lleno.
 
 si no pasamos un modo en el open, python asume que es 'r', es decir, de lectura.
 
 open(arch) da error si el archivo no existe o si no tenemos permiso para visualizar el archivo.
+
+Formas de abrir un archivo con otro nombre: variable = open(file) o open(file) as variable
 
 """
 import os
@@ -44,21 +48,77 @@ ruta = os.path.dirname(os.path.realpath("."))
 
 ruta_completa = os.path.join(ruta, "teorias", "ejemplos", "clase")
 
-dirname = nombre de la ruta;
+.dirname = nombre de la ruta;
 .realpath = nombre de la ruta en las que estas parado;
 
 Esto se utiliza para poder hacer una importacion de archivos sin importar el sistema operativo que tengan las maquinas.
 """
 
-variable.write(contenido) = escribe contenido en caracteres en un archivo
+variable.write(contenido) = escribe contenido en caracteres en un archivo y retorna la cantidad de caracteres que se escribieron.
 
 print(variable.write(variable)) = nos dice la cantidad de caracteres que se escriben
 
 variable.close() = cierra el archivo y guarda el contenido
 
-variable.read(cantidad_bytes) = lee esa cantidad de bytes en el archivo, si la cantidad de bytes es (< 0) y si pasamos el read sin parametros lee hasta el fin de archivo
+variable.read(cantidad_bytes) = lee esa cantidad de bytes en el archivo, si la cantidad de bytes y es < 0 o si pasamos el read sin parametros lee hasta el fin de archivo
 
 si el read retorna "" es que estoy en el EOF
+
+si abrimos el archivo con el modo "rb" nos devuelve el archivo convertido en binarios, osea, en bytes
+
+utilizando el metodo "variable.decode("UTF-8")" podemos volver un archivo binario devuelta en texto
+
+los archivos JSON y CSV trabajan unicamente con archivos de texto
+
+casos de uso de JSON: es bueno si se trabaja con diccionarios
+
+casos de uso de CSV: es bueno para manejar hojas de calculo, tablas de base de datos, o si vos generas un archivo con datos, etc.
+
+"json.dump(dato, nombre_archivo)" sirve para tomar una estructura, combertirla en formato JSON y lo guarda en un archivo de texto en una unica linea, "dumps" hace lo mismo y lo guarda en un string en el archivo
+
+"json.dumps(lista_json, indent=4)": serializa o formatea una estructura que tiene formato json convirtiendola en string, el 'indent=4' es para que los elementos tengan indentacion.
+
+"json.load(nombre_archivo)" sirve para tomar informacion de un archivo que este en formato JSON y guardarlo en una variable con ese formato.
+
+"csv.reader(csvfile, delimiter)": retorna un objeto 'reader' que itera sobre las lineas del csvfile gurdandote la informacion de todo el archivo en formato de lista.
+
+"csv.DictReader(csvfile, delimiter)": lo mismo que el csv.reader pero retornado como diccionario.
+
+"csv.writer" va guardando de a filas los elementos de un archivo CSV
+
+"writer.writerow([lista])" escribe una nueva fila en el archivo
+
+se puede hacer "writerow(list(dicci.values))" para no mandar datos usando cada clave del diccionario
+
+se puede hace "write.writerows" para guardar una lista de listas y añadir multiples filas
+
+"os.getcwd()" sirve para generar la ruta actual de donde esta el archivo "os.path.dirname(os.path.realpath("."))" sirve para saber el padre de la ruta donde esta el archivo, osea, una antes
+
+Una excepcion es un acontecimiento que ocurre durante la ejecucion que interrumple el flujo normal del programa.
+
+(IndexError; TypeError; FileNotFoundError; NameError; ValueError; KeyError): ejemplos de excepciones
+
+Python provee manejo de excepciones
+
+una excepcion se 'levanta' cuando se produce la misma
+
+hay que definir un manejador de excepciones, este es el codigo que se va a ejecutar en el momento que se levante una excepcion en especifico
+
+Las excepciones en python son CLASES
+
+para manejar excepciones se usa el bloque 'try: except:'
+
+"""
+try:
+	sentencias de codigo que puedan generar excepciones
+except (nombre de la excepcion que se genera):
+	sentencias que digan que se hace si salta una excepcion
+"""
+
+se puede realizar 'except:' para que se ejecute el manejador de excepciones ante cualquier excepcion que se pueda generar
+
+'terminacion': se le dice terminacion a cunado Python corta le ejecucion de un bloque en especifico por el manejo de una excepcion
+
 
 
 
