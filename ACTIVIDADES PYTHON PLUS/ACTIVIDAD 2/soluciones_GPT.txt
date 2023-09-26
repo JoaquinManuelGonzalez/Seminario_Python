@@ -1,0 +1,118 @@
+Dime, Qué errores de estilo le encuentras a el fragmento de código que te brinde? 
+Sigue las especificaciones de la PEP8 de Python porfavor.
+
+---------------------------------------RESPUESTA-----------------------------------------
+
+Aquí hay algunos errores de estilo en el fragmento de código que has proporcionado, 
+siguiendo las especificaciones de la guía de estilo PEP 8:
+
+1. Importaciones: Según la convención de estilo, las importaciones deben colocarse al principio del archivo, 
+cada una en una línea separada y en el siguiente orden:
+   - Importaciones de bibliotecas estándar de Python.
+   - Importaciones de bibliotecas externas de terceros.
+   - Importaciones de módulos locales o personalizados.
+
+   Además, no se requiere importar el módulo `clases` en este fragmento de código, ya que no se utiliza. 
+   Por lo tanto, se puede eliminar la línea de importación correspondiente.
+
+   El código corregido sería:
+
+   ```python
+   import json
+   import csv
+   from random import randrange
+
+   import clases
+   ```
+
+2. Espacios en blanco: Hay algunos lugares donde se necesitan espacios adicionales para cumplir con la 
+convención de estilo:
+
+   - Después de las comas que separan los argumentos en la función `dict(zip(linea1, linea2))`.
+   - Después de las comas que separan los elementos en las importaciones de `json` y `csv`.
+   - Antes y después del operador de asignación `=` en las asignaciones de variables.
+
+   El código corregido sería:
+
+   ```python
+   Datos = json.load(archi)
+   Datos = dict(zip(linea1, linea2))
+   ```
+
+3. Nombres de variables: El nombre de la variable `Datos` debería seguir la convención de nombres en minúscula 
+con palabras separadas por guiones bajos. Además, el nombre de la variable `banda` debería estar en minúscula, 
+ya que sigue las convenciones de nombres para variables.
+
+   El código corregido sería:
+
+   ```python
+   datos = json.load(archi)
+   datos = dict(zip(linea1, linea2))
+   banda = clases.Banda(datos['nombre'], datos['genero'])
+   ```
+
+Con estas correcciones, el fragmento de código se ajusta mejor a las especificaciones de estilo de la PEP 8. 
+Recuerda que la consistencia en el estilo de código ayuda a que sea más legible y mantenible.
+
+-----------------------------------------------------------------------------------------
+
+Dime qué excepciones podría levantar el código que te brinde y como la solucionarías porfavor.
+
+---------------------------------------RESPUESTA-----------------------------------------
+
+El código proporcionado puede generar algunas excepciones. A continuación, se mencionan las posibles excepciones 
+y se propone una forma de manejarlas:
+
+1. Excepción de archivo no encontrado (`FileNotFoundError`):
+   - El código intenta abrir los archivos "datos.json" y "datos.csv" en modo de lectura. Si alguno de los archivos 
+   no existe, se generará una excepción `FileNotFoundError`.
+
+   Solución: Se puede envolver el código que abre los archivos en un bloque `try-except` para capturar la excepción y
+    manejarla adecuadamente. Por ejemplo, se puede mostrar un mensaje de error y establecer `Datos` como un diccionario 
+    vacío en caso de que ocurra la excepción.
+
+   ```python
+   try:
+       archi = open("datos.json", "r")
+       Datos = json.load(archi)
+       archi.close()
+   except FileNotFoundError:
+       print("El archivo 'datos.json' no se encuentra. Estableciendo Datos como un diccionario vacío.")
+       Datos = {}
+   ```
+
+   ```python
+   try:
+       archi = open("datos.csv", "r")
+       csvreader = csv.reader(archi, delimiter=',')
+       linea1 = next(csvreader)
+       linea2 = next(csvreader)
+       Datos = dict(zip(linea1, linea2))
+       archi.close()
+   except FileNotFoundError:
+       print("El archivo 'datos.csv' no se encuentra. Estableciendo Datos como un diccionario vacío.")
+       Datos = {}
+   ```
+
+2. Excepción de clave no encontrada (`KeyError`):
+   - Después de obtener los datos del archivo (ya sea JSON o CSV), el código intenta acceder a las claves `'nombre'` 
+   y `'genero'` en el diccionario `Datos`. Si alguna de las claves no está presente en el diccionario, se generará una 
+   excepción `KeyError`.
+
+   Solución: Se puede manejar esta excepción envolviendo el código que accede a las claves en un bloque `try-except` y 
+   proporcionar una acción alternativa en caso de que ocurra la excepción. Por ejemplo, se puede mostrar un mensaje de 
+   error y establecer valores predeterminados para `'nombre'` y `'genero'`.
+
+   ```python
+   try:
+       banda = clases.Banda(Datos['nombre'], Datos['genero'])
+   except KeyError as e:
+       print(f"Se produjo un error de clave: {e}. Estableciendo valores predeterminados para nombre y genero.")
+       banda = clases.Banda("Nombre Predeterminado", "Genero Predeterminado")
+   ```
+
+Con estas soluciones, el código estará preparado para manejar las posibles excepciones y proporcionar una respuesta más 
+robusta en caso de que ocurran. Recuerda que el manejo de excepciones permite una mejor gestión de errores y ayuda a 
+mantener la estabilidad del programa.
+
+-----------------------------------------------------------------------------------------

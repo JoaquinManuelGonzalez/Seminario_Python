@@ -1,0 +1,40 @@
+El programa main.py lo que hace es acceder aleatoriamente a un archivo json o a un archivo csv
+que contienen informacion de una Banda de rock, una vez extraida esa informacion, crea un objeto
+de la clase Banda y utiliza el toString de la misma para mostrar la informacion de la misma.
+
+El metodo __init__ se invoca en la linea 24.
+
+El metodo __str__ se invoca en la linea 26.
+
+un objeto de la clase banda tiene 3 variables de instancia y una variable de clase.
+
+la diferencia entre las variables genero e _integrantes es que una es publica y la otra seria no privada
+a la vista del programador, y que integrantes es una lista que conteneria informacion de los integrantes.
+
+En los archivos se guarda un numero como informacion de los integrantes.
+
+si se llamara a el metodo agregar_integrantes se romperia en el __str__
+
+se levanta la excepcion FileNotFoundError si el valor de opcion es 1, ya que intenta abrir un archivo csv que no tiene
+el mismo nombre del que se nos da, si se abre el json el programa finaliza sin error.
+
+si se maneja individualmente las excepciones dentro de los 2 if de opciones, se levanta UnboundLocalError en la linea 21,
+y si se manejan esos 2 tipos de errores y se retorna None, levantaría TypeError en la linea 28, o si se retorna un diccionario
+vacio se levanta KeyError.
+
+PEP 8:
+    en la linea 3 el import clases lleva un espacio de mas
+
+    Falta de docstring en la funcion obtengoDatos
+
+    en el main original cuenta con lineas en blanco
+
+    se debe utilizar un mismo tipo de comillas en todo el programa
+
+    se debe dejar una linea en blanco al final del programa
+
+    se debe dejar un espacio antes y despues del = en una asignacion
+    
+    es recomendable tener los imports de json y csv por separado
+
+    se debe dejar 2 lineas en blanco luego de los imports

@@ -1,0 +1,13 @@
+<class '_csv.reader'>, se convierte para que se pueda iterar mas de una vez, se pueda acceder fuera del bloque with, se pueda 
+acceder con indices, tener cuidado que la informacion es guardada en memoria dinamica, osea que si el csv es tan grande que
+no cabe en nuestra memoria dinamica, no podremos hacer uso del mismo
+
+Obligatorio unicamente uno, *args puede dejarse vacío
+
+retorna un diccionario, para un manejo sin pandas creo que es una buena estructura
+
+
+Pandas es muy fácil de usar gracias a su sintaxis clara y concisa.
+Pandas tiene una gran cantidad de funciones y métodos disponibles para manipular datos
+Pandas está diseñado para ser eficiente en el manejo de grandes cantidades de datos, lo que la hace ideal para el análisis de datos a gran escala.
+Pandas se integra fácilmente con otras librerías de Python, como Matplotlib
